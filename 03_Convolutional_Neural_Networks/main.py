@@ -19,7 +19,7 @@ model = tf.keras.Sequential([
     tf.keras.layers.MaxPooling2D(pool_size=(2, 2)),
     tf.keras.layers.Conv2D(filters=64, kernel_size=(3, 3), activation=relu),
     tf.keras.layers.MaxPooling2D(pool_size=(2, 2)),
-    tf.keras.layers.Flatten(),
+    tf.keras.layers.Flatten(), # this converts our 3D feature maps to 1D feature vectors
     tf.keras.layers.Dense(64, activation=relu),
     tf.keras.layers.Dense(1, activation=sigmoid)
 ])
