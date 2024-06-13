@@ -17,10 +17,13 @@ def prepare(filepath):
 
     return new_array, color_image
 
-model = tf.keras.models.load_model("64x3-CNN.h5")
+# model = tf.keras.models.load_model("64x3-CNN.h5")
+model = tf.keras.models.load_model("300-epochs.h5")
 
-# Paths to the 4 images
-image_paths = ["dog.png", "cat.png", "dudu.jpg", "potter.jpg"]
+# Paths to the images
+# image_paths = ["dog.png", "cat.png", "dudu.jpg", "potter.jpg"]
+image_paths = ["dudu.jpg", "potter.jpg", "layla.jpeg", "maple.jpeg", "nelly.jpeg"]
+
 
 # Prepare and predict each image
 predictions = []
@@ -29,14 +32,14 @@ for path in image_paths:
     image, original_image = prepare(path)
     prediction = model.predict(image)
     pred_class = CATEGORIES[int(prediction[0][0])]
-    
+
     predictions.append(pred_class)
     original_images.append((original_image, path))
 
 # Plotting the results in a larger size
 plt.figure(figsize=(15, 10))
-for i in range(4):
-    plt.subplot(2, 2, i + 1)
+for i in range(len(original_images)):
+    plt.subplot(2, 3, i + 1)
     original_image, filename = original_images[i]
     plt.imshow(cv2.cvtColor(original_image, cv2.COLOR_BGR2RGB))  # Convert BGR to RGB for correct color display
     plt.title(f"Predicted: {predictions[i]}\n{filename}")

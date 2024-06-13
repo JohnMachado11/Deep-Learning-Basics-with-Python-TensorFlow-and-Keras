@@ -63,9 +63,11 @@ for dense_layer in dense_layers:
                         loss="binary_crossentropy", # How we'll calculate our "error". Neural Network aims to minimize loss.
                         metrics=["accuracy"]) # What to track
 
-            model.fit(X, y, batch_size=32, epochs=20, validation_split=0.3, callbacks=[tensorboard])
+            model.fit(X, y, batch_size=32, epochs=300, validation_split=0.3, callbacks=[tensorboard])
 
             model.summary()
+
+model.save(filepath="300-epochs.h5")
 
 # # Print out the activation functions for each layer
 # for layer in model.layers:
